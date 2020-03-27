@@ -10,10 +10,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "zhaus": "file:./../wasm/pkg",
     "copy-webpack-plugin": "^5.0.0",
+    "jquery": "^3.4.1",
+    "leaflet": "^1.6.0",
     "webpack": "^4.16.3",
     "webpack-cli": "^3.1.0",
-    "webpack-dev-server": "^3.1.5"
+    "webpack-dev-server": "^3.1.5",
+    "zhaus": "file:./../wasm/pkg"
   }
 }
