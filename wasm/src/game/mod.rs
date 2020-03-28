@@ -80,7 +80,6 @@ impl MemoryDistrictDatasource {
     pub fn get_districts(&self) -> Vec<District> {
         setup_districts::setup_districts()
             .into_iter()
-            .take(5)
             .collect()
     }
 }
@@ -160,15 +159,17 @@ impl Reactor {
                 .game
                 .districts
                 .iter_mut()
-                .filter(|w| w.infected > 0.0)
                 .collect();
 
-            console_log!("I'm here");
-            
+            //console_log!("{:?}", d);
+
             //Spread to other areas
             for di in copy.iter() { //Iterating over copy while modifying the array
+                console_log!("Checking district {}", di.name);
+
                 let mut rng = thread_rng();
-                if rng.gen_bool(0.1) {
+                let b: f64 = rng.gen();
+                if rng.gen_bool(b) {
                     //10% change to spread for every district
                     let numbers: usize = rand::thread_rng().gen_range(0, di.neighbours.len());
 
@@ -176,18 +177,28 @@ impl Reactor {
                     indices.shuffle(&mut rng);
 
                     for n in indices.into_iter().take(numbers) {
+                        console_log!("Spreading to {:?}", di.neighbours[n]); 
+
                         let mut name_of_neighbour = d
                             .iter_mut()
                             .filter(|w| *w.get_name() == di.neighbours[n])
                             .collect::<Vec<_>>();
+
+                        //console_log!("Spreading to {:?}", name_of_neighbour); 
+
                         let mut w = name_of_neighbour
                             .get_mut(0)
                             .expect("Neighbour should exist"); //Reference by name
+
+                        if w.infected > 0.0 { //already infected
+                            continue;
+                        }
 
                         //Lambda
                         let k: f64 = rng.gen();
                         w.lambda = k / 12.0;
                         w.lambda = (w.lambda * 100.0).round() / 100.0;
+                        w.infected = 1.0; //init
 
                         //Infected
                         w.infected =
@@ -258,5 +269,5 @@ pub fn get_feature_by_name(name: JsValue, infected: f64, dead: f64) -> JsValue {
         GeoJson::Geometry(ref geometry) => panic!("not ok"),
     };
 
-    panic!("feature not found");
+    panic!("feature not found {}", name);
 }

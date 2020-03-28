@@ -6,18 +6,18 @@ pub(crate) fn setup_districts() -> Vec<District> {
     Game::create_district(
         &mut map,
         "Bludenz",
-        vec!["Feldkirch", "Bregenz", "Reutte", "Landeck"],
+        vec!["Feldkirch", "Bregenz", "Reutte (Ausserfern)", "Landeck"],
     );
     Game::create_district(
         &mut map,
         "Wels-Land",
         vec![
-            "Wels(Stadt)",
+            "Wels (Stadt)",
             "Grieskirchen",
-            "Vöcklabruck",
+            "Voecklabruck",
             "Gmunden",
             "Kirchdorf an der Krems",
-            "Steyr Land",
+            "Steyr-Land",
             "Linz-Land",
             "Eferding",
         ],
@@ -26,9 +26,9 @@ pub(crate) fn setup_districts() -> Vec<District> {
         &mut map,
         "Salzburg-Umgebung",
         vec![
-            "Salzburg(Stadt)",
+            "Salzburg (Stadt)",
             "Braunau am Inn",
-            "Vöcklabruck",
+            "Voecklabruck",
             "Gmunden",
             "Hallein",
         ],
@@ -41,29 +41,29 @@ pub(crate) fn setup_districts() -> Vec<District> {
             "Murtal",
             "Voitsberg",
             "Deutschlandsberg",
-            "Völkermarkt",
+            "Voelkermarkt",
         ],
     );
     Game::create_district(
         &mut map,
         "Korneuburg",
-        vec!["Hollabrunn", "Mistelbach", "Wien(Stadt)", "Tulln"],
+        vec!["Hollabrunn", "Mistelbach", "Wien", "Tulln"],
     );
     Game::create_district(
         &mut map,
         "Freistadt",
-        vec!["Urfahr-Umgebung", "Gmünd", "Zwettl", "Perg"],
+        vec!["Urfahr-Umgebung", "Gmuend", "Zwettl", "Perg"],
     );
     Game::create_district(
         &mut map,
-        "Wiener Neustadt(Stadt)",
-        vec!["Wiener Neustadt(Land)", "Mattersburg", "Neunkirchen"],
+        "Wiener Neustadt (Stadt)",
+        vec!["Wiener Neustadt (Land)", "Mattersburg", "Neunkirchen"],
     );
     Game::create_district(
         &mut map,
         "Linz-Land",
         vec![
-            "Linz(Stadt)",
+            "Linz (Stadt)",
             "Urfahr-Umgebung",
             "Wels-Land",
             "Steyr-Land",
@@ -82,18 +82,18 @@ pub(crate) fn setup_districts() -> Vec<District> {
         "Zwettl",
         vec![
             "Waidhofen an der Thaya",
-            "Gmünd",
+            "Gmuend",
             "Freistadt",
             "Perg",
             "Melk",
-            "Krems(Land)",
+            "Krems (Land)",
             "Horn",
         ],
     );
     Game::create_district(
         &mut map,
         "Neusiedl am See",
-        vec!["Bruck an der Leitha", "Eisenstadt-Umgebung", "Rust(Stadt)"],
+        vec!["Bruck an der Leitha", "Eisenstadt-Umgebung", "Rust (Stadt)"],
     );
     Game::create_district(
         &mut map,
@@ -112,13 +112,12 @@ pub(crate) fn setup_districts() -> Vec<District> {
         &mut map,
         "Melk",
         vec![
-            "Krems(Land)",
+            "Krems (Land)",
             "Zwettl",
             "Perg",
             "Amstetten",
             "Scheibbs",
-            "Sankt Pölten(Land)",
-            "Krems(Land)",
+            "Sankt Poelten (Land)",
         ],
     );
     Game::create_district(
@@ -132,7 +131,7 @@ pub(crate) fn setup_districts() -> Vec<District> {
             "Murau",
             "Murtal",
             "Leoben",
-            "Bruck-Mürzzuschlag",
+            "Bruck-Muerzzuschlag",
             "Scheibbs",
             "Amstetten",
             "Steyr-Land",
@@ -140,7 +139,7 @@ pub(crate) fn setup_districts() -> Vec<District> {
     );
     Game::create_district(
         &mut map,
-        "Völkermarkt",
+        "Voelkermarkt",
         vec!["Klagenfurt Land", "Sankt Veit an der Glan", "Wolfsberg"],
     );
     Game::create_district(
@@ -149,16 +148,16 @@ pub(crate) fn setup_districts() -> Vec<District> {
         vec![
             "Waidhofen an der Thaya",
             "Zwettl",
-            "Krems(Land)",
+            "Krems (Land)",
             "Hollabrunn",
         ],
     );
     Game::create_district(
         &mut map,
         "Waidhofen an der Thaya",
-        vec!["Horn", "Zwettl", "Gmünd"],
+        vec!["Horn", "Zwettl", "Gmuend"],
     );
-    Game::create_district(&mut map, "Kufstein", vec!["Schwaz", "Kitzbühel"]);
+    Game::create_district(&mut map, "Kufstein", vec!["Schwaz", "Kitzbuehel"]);
     Game::create_district(
         &mut map,
         "Eferding",
@@ -168,7 +167,7 @@ pub(crate) fn setup_districts() -> Vec<District> {
             "Linz-Land",
             "Wels-Land",
             "Grieskirchen",
-            "Schärding",
+            "Schaerding",
         ],
     );
     Game::create_district(
@@ -178,9 +177,9 @@ pub(crate) fn setup_districts() -> Vec<District> {
             "Perg",
             "Melk",
             "Scheibbs",
-            "Waidhofen an der Ybbs",
+            "Waidhofen an der Ybbs (Stadt)",
             "Steyr-Land",
-            "Steyr(Stadt)",
+            "Steyr (Stadt)",
             "Linz-Land",
             "Liezen",
         ],
@@ -192,7 +191,7 @@ pub(crate) fn setup_districts() -> Vec<District> {
             "Amstetten",
             "Freistadt",
             "Urfahr-Umgebung",
-            "Linz(Stadt)",
+            "Linz (Stadt)",
             "Linz-Land",
             "Melk",
             "Zwettl",
@@ -200,35 +199,35 @@ pub(crate) fn setup_districts() -> Vec<District> {
     );
     Game::create_district(
         &mut map,
-        "Sankt Pölten(Land)",
+        "Sankt Poelten (Land)",
         vec![
-            "Sankt Pölten(Stadt)",
+            //"Sankt Poelten(Stadt)",
             "Tulln",
-            "Wien(Stadt)",
-            "Mödling",
+            "Wien",
+            "Moedling",
             "Baden",
             "Lilienfeld",
             "Melk",
-            "Krems-Land",
-            "Krems an der Donau(Stadt)",
+            "Krems (Land)",
+            "Krems an der Donau (Stadt)",
         ],
     );
     Game::create_district(&mut map, "Innsbruck-Stadt", vec!["Innsbruck-Land"]);
     Game::create_district(
         &mut map,
-        "Güssing",
-        vec!["Oberwart", "Hartberg-Fürstenfeld", "Südoststeiermark"],
+        "Guessing",
+        vec!["Oberwart", "Hartberg-Fuerstenfeld", "Suedoststeiermark"],
     );
     Game::create_district(
         &mut map,
         "Deutschlandsberg",
         vec!["Voitsberg", "Graz-Umgebung", "Leibnitz", "Wolfsberg"],
     );
-    Game::create_district(&mut map, "Salzburg(Stadt)", vec!["Salzburg-Umgebung"]);
+    Game::create_district(&mut map, "Salzburg (Stadt)", vec!["Salzburg-Umgebung"]);
     Game::create_district(
         &mut map,
         "Leibnitz",
-        vec!["Graz-Umgebung", "Deutschlandsberg", "Südoststeiermark"],
+        vec!["Graz-Umgebung", "Deutschlandsberg", "Suedoststeiermark"],
     );
     Game::create_district(
         &mut map,
@@ -238,65 +237,65 @@ pub(crate) fn setup_districts() -> Vec<District> {
     Game::create_district(
         &mut map,
         "Hollabrunn",
-        vec!["Horn", "Krems(Land)", "Tulln", "Korneuburg", "Mistelbach"],
+        vec!["Horn", "Krems (Land)", "Tulln", "Korneuburg", "Mistelbach"],
     );
     Game::create_district(
         &mut map,
-        "Wiener Neustadt(Land)",
+        "Wiener Neustadt (Land)",
         vec![
-            "Wiener Neustadt(Stadt)",
+            "Wiener Neustadt (Stadt)",
             "Neunkirchen",
             "Baden",
             "Eisenstadt-Umgebung",
             "Mattersburg",
             "Oberpullendorf",
             "Oberwart",
-            "Hartberg-Fürstenfeld",
+            "Hartberg-Fuerstenfeld",
         ],
     );
     Game::create_district(
         &mut map,
         "Braunau am Inn",
-        vec!["Ried im Innkreis", "Vöcklbruck", "Salzburg-Umgebung"],
+        vec!["Ried im Innkreis", "Voecklabruck", "Salzburg-Umgebung"],
     );
     Game::create_district(
         &mut map,
         "Baden",
         vec![
-            "Mödling",
+            "Moedling",
             "Bruck an der Leitha",
             "Eisenstadt-Umgebung",
-            "Wiener Neustadt(Land)",
+            "Wiener Neustadt (Land)",
             "Lilienfeld",
-            "Sankt Pölten(Land)",
+            "Sankt Poelten (Land)",
         ],
     );
     Game::create_district(
         &mut map,
         "Ried im Innkreis",
-        vec!["Braunau am Inn", "Schärding", "Grieskirchen", "Vöcklabruck"],
+        vec!["Braunau am Inn", "Schaerding", "Grieskirchen", "Voecklabruck"],
     );
     Game::create_district(
         &mut map,
         "Hermagor",
-        vec!["Spittal an der Drau", "Villach Land", "Lienz"],
+        vec!["Spittal an der Drau", "Villach-Land", "Lienz"],
     );
     Game::create_district(
         &mut map,
         "Neunkirchen",
         vec![
-            "Wiener Neustadt(Land)",
-            "Wiener Neustadt(Stadt)",
-            "Hartberg-Fürstenfeld",
+            "Wiener Neustadt (Land)",
+            "Wiener Neustadt (Stadt)",
+            "Hartberg-Fuerstenfeld",
             "Weiz",
-            "Bruck-Mürzzuschlag",
+            "Bruck-Muerzzuschlag",
             "Lilienfeld",
         ],
     );
     Game::create_district(
         &mut map,
         "Jennersdorf",
-        vec!["Hartberg-Fürstenfeld", "Güssing", "Südoststeiermark"],
+        vec!["Hartberg-Fuerstenfeld", "Guessing", "Suedoststeiermark"],
     );
     Game::create_district(
         &mut map,
@@ -305,19 +304,19 @@ pub(crate) fn setup_districts() -> Vec<District> {
             "Lienz",
             "Spittal an der Drau",
             "Sankt Johann im Pongau",
-            "Kitzbühel",
+            "Kitzbuehel",
             "Schwaz",
         ],
     );
     Game::create_district(
         &mut map,
-        "Krems(Land)",
+        "Krems (Land)",
         vec![
             "Horn",
             "Zwettl",
             "Melk",
-            "Sankt Pölten(Land)",
-            "Krems an der Donau(Stadt)",
+            "Sankt Poelten (Land)",
+            "Krems an der Donau (Stadt)",
             "Tulln",
             "Hollabrunn",
         ],
@@ -325,14 +324,14 @@ pub(crate) fn setup_districts() -> Vec<District> {
     Game::create_district(
         &mut map,
         "Leoben",
-        vec!["Murtal", "Liezen", "Bruck-Mürzzuschlag", "Graz-Umgebung"],
+        vec!["Murtal", "Liezen", "Bruck-Muerzzuschlag", "Graz-Umgebung"],
     );
     Game::create_district(
         &mut map,
-        "Mödling",
+        "Moedling",
         vec![
-            "Sankt Pölten(Land)",
-            "Wien(Stadt)",
+            "Sankt Poelten (Land)",
+            "Wien",
             "Bruck an der Leitha",
             "Baden",
         ],
@@ -342,27 +341,27 @@ pub(crate) fn setup_districts() -> Vec<District> {
         "Scheibbs",
         vec![
             "Amstetten",
-            "Waidhofen an der Ybbs",
+            "Waidhofen an der Ybbs (Stadt)",
             "Melk",
-            "Sankt Pölten(Land)",
+            "Sankt Poelten (Land)",
             "Lilienfeld",
-            "Bruck-Mürzzuschlag",
+            "Bruck-Muerzzuschlag",
             "Liezen",
         ],
     );
     Game::create_district(
         &mut map,
-        "Rust(Stadt)",
+        "Rust (Stadt)",
         vec!["Eisenstadt-Umgebung", "Neusiedl am See"],
     );
-    Game::create_district(&mut map, "Wels(Stadt)", vec!["Wels Land"]);
+    Game::create_district(&mut map, "Wels (Stadt)", vec!["Wels Land"]);
     Game::create_district(
         &mut map,
         "Bruck an der Leitha",
         vec![
-            "Gänserndorf",
-            "Wien(Stadt)",
-            "Mödling",
+            "Gaenserndorf",
+            "Wien",
+            "Moedling",
             "Baden",
             "Eisenstadt-Umgebung",
             "Neusiedl am See",
@@ -371,21 +370,21 @@ pub(crate) fn setup_districts() -> Vec<District> {
     Game::create_district(
         &mut map,
         "Rohrbach",
-        vec!["Eferding", "Grieskirchen", "Schärding", "Urfahr-Umgebung"],
+        vec!["Eferding", "Grieskirchen", "Schaerding", "Urfahr-Umgebung"],
     );
     Game::create_district(
         &mut map,
         "Villach Stadt",
-        vec!["Villach Land", "Feldkirchen"],
+        vec!["Villach-Land", "Feldkirchen"],
     );
     Game::create_district(
         &mut map,
-        "Reutte",
+        "Reutte (Ausserfern)",
         vec!["Imst", "Landeck", "Bludenz", "Bregenz"],
     );
     Game::create_district(
         &mut map,
-        "Schärding",
+        "Schaerding",
         vec!["Ried im Innkreis", "Grieskirchen", "Rohrbach"],
     );
     Game::create_district(
@@ -396,7 +395,7 @@ pub(crate) fn setup_districts() -> Vec<District> {
     Game::create_district(
         &mut map,
         "Mistelbach",
-        vec!["Gänserndorf", "Korneuburg", "Hollabrunn"],
+        vec!["Gaenserndorf", "Korneuburg", "Hollabrunn"],
     );
     Game::create_district(
         &mut map,
@@ -404,26 +403,26 @@ pub(crate) fn setup_districts() -> Vec<District> {
         vec![
             "Hollabrunn",
             "Korneuburg",
-            "Wien(Stadt)",
-            "Sankt Pölten(Land)",
-            "Krems an der Donau(Stadt)",
-            "Krems(Land)",
+            "Wien",
+            "Sankt Poelten (Land)",
+            "Krems an der Donau (Stadt)",
+            "Krems (Land)",
         ],
     );
     Game::create_district(
         &mut map,
         "Eisenstadt-Umgebung",
         vec![
-            "Eisenstadt(Stadt)",
+            "Eisenstadt (Stadt)",
             "Bruck an der Leitha",
             "Neusiedl am See",
-            "Rust(Stadt)",
+            "Rust (Stadt)",
             "Mattersburg",
-            "Wiener Neustadt(Land)",
+            "Wiener Neustadt (Land)",
             "Baden",
         ],
     );
-    Game::create_district(&mut map, "Steyr(Stadt)", vec!["Amstetten", "Steyr-Land"]);
+    Game::create_district(&mut map, "Steyr (Stadt)", vec!["Amstetten", "Steyr-Land"]);
     Game::create_district(
         &mut map,
         "Sankt Veit an der Glan",
@@ -431,7 +430,7 @@ pub(crate) fn setup_districts() -> Vec<District> {
             "Feldkirchen",
             "Murau",
             "Wolfsberg",
-            "Völkermarkt",
+            "Voelkermarkt",
             "Klagenfurt Land",
             "Klagenfurt Stadt",
             "Murtal",
@@ -439,18 +438,18 @@ pub(crate) fn setup_districts() -> Vec<District> {
     );
     Game::create_district(
         &mut map,
-        "Gänserndorf",
+        "Gaenserndorf",
         vec![
             "Mistelbach",
             "Korneuburg",
-            "Wien(Stadt)",
+            "Wien",
             "Bruck an der Leitha",
         ],
     );
     Game::create_district(
         &mut map,
         "Schwaz",
-        vec!["Innsbruck-Land", "Kufstein", "Kitzbühel", "Zell am See"],
+        vec!["Innsbruck-Land", "Kufstein", "Kitzbuehel", "Zell am See"],
     );
     Game::create_district(
         &mut map,
@@ -466,13 +465,13 @@ pub(crate) fn setup_districts() -> Vec<District> {
     );
     Game::create_district(
         &mut map,
-        "Wien(Stadt)",
+        "Wien",
         vec![
             "Korneuburg",
-            "Gänserndorf",
+            "Gaenserndorf",
             "Bruck an der Leitha",
-            "Mödling",
-            "Sankt Pölten(Land)",
+            "Moedling",
+            "Sankt Poelten (Land)",
             "Tulln",
             "Mistelbach",
         ],
@@ -484,14 +483,15 @@ pub(crate) fn setup_districts() -> Vec<District> {
     );
     Game::create_district(
         &mut map,
-        "Krems an der Donau(Stadt)",
-        vec!["Krems(Land)", "Sankt Pölten(Land)"],
+        "Krems an der Donau (Stadt)",
+        vec!["Krems (Land)", "Sankt Poelten (Land)"],
     );
+
     Game::create_district(
         &mut map,
         "Feldkirchen",
         vec![
-            "Villach Land",
+            "Villach-Land",
             "Spittal an der Drau",
             "Murau",
             "Sankt Veit an der Glan",
@@ -505,9 +505,9 @@ pub(crate) fn setup_districts() -> Vec<District> {
         "Steyr-Land",
         vec![
             "Linz-Land",
-            "Steyr(Stadt)",
+            "Steyr (Stadt)",
             "Amstetten",
-            "Waidhofen an der Ybbs(Stadt)",
+            "Waidhofen an der Ybbs (Stadt)",
             "Liezen",
             "Kirchdorf an der Krems",
             "Wels-Land",
@@ -517,37 +517,37 @@ pub(crate) fn setup_districts() -> Vec<District> {
         &mut map,
         "Weiz",
         vec![
-            "Bruck-Mürzzuschlag",
+            "Bruck-Muerzzuschlag",
             "Neunkirchen",
-            "Hartberg-Fürstenfeld",
-            "Südoststeiermark",
+            "Hartberg-Fuerstenfeld",
+            "Suedoststeiermark",
             "Graz-Umgebung",
         ],
     );
     Game::create_district(
         &mut map,
         "Imst",
-        vec!["Landeck", "Reutte", "Innsbruck-Land"],
+        vec!["Landeck", "Reutte (Ausserfern)", "Innsbruck-Land"],
     );
     Game::create_district(
         &mut map,
-        "Südoststeiermark",
+        "Suedoststeiermark",
         vec![
             "Leibnitz",
             "Graz-Umgebung",
             "Weiz",
-            "Hartberg-Fürstenfeld",
-            "Güssing",
+            "Hartberg-Fuerstenfeld",
+            "Guessing",
         ],
     );
     Game::create_district(
         &mut map,
-        "Linz(Stadt)",
+        "Linz (Stadt)",
         vec!["Urfahr-Umgebung", "Perg", "Linz-Land"],
     );
     Game::create_district(
         &mut map,
-        "Gmünd",
+        "Gmuend",
         vec!["Waidhofen an der Thaya", "Zwettl", "Freistadt"],
     );
     Game::create_district(
@@ -555,8 +555,8 @@ pub(crate) fn setup_districts() -> Vec<District> {
         "Mattersburg",
         vec![
             "Eisenstadt-Umgebung",
-            "Wiener Neustadt(Stadt)",
-            "Wiener Neustadt(Land)",
+            "Wiener Neustadt (Stadt)",
+            "Wiener Neustadt (Land)",
             "Oberpullendorf",
         ],
     );
@@ -564,16 +564,16 @@ pub(crate) fn setup_districts() -> Vec<District> {
         &mut map,
         "Klagenfurt Land",
         vec![
-            "Villach Land",
+            "Villach-Land",
             "Feldkirchen",
             "Sankt Veit an der Glan",
-            "Völkermarkt",
+            "Voelkermarkt",
         ],
     );
     Game::create_district(
         &mut map,
         "Oberpullendorf",
-        vec!["Mattersburg", "Wiener Neustadt(Land)", "Oberwart"],
+        vec!["Mattersburg", "Wiener Neustadt (Land)", "Oberwart"],
     );
     Game::create_district(&mut map, "Dornbirn", vec!["Bregenz", "Feldkirch"]);
     Game::create_district(
@@ -591,20 +591,20 @@ pub(crate) fn setup_districts() -> Vec<District> {
         "Grieskirchen",
         vec![
             "Eferding",
-            "Schärding",
+            "Schaerding",
             "Ried im Innkreis",
-            "Vöcklabruck",
+            "Voecklabruck",
             "Wels-Land",
         ],
     );
-    Game::create_district(&mut map, "Sankt Pölten(Stadt)", vec!["Sankt Pölten(Land)"]);
+    //Game::create_district(&mut map, "Sankt Poelten (Stadt)", vec!["Sankt Poelten (Land)"]);
     Game::create_district(
         &mut map,
         "Urfahr-Umgebung",
         vec![
             "Rohrbach",
             "Freistadt",
-            "Linz(Stadt)",
+            "Linz (Stadt)",
             "Linz-Land",
             "Eferding",
         ],
@@ -626,36 +626,36 @@ pub(crate) fn setup_districts() -> Vec<District> {
         "Innsbruck-Land",
         vec!["Innsbruck-Stadt", "Schwaz", "Imst"],
     );
-    Game::create_district(&mut map, "Eisenstadt(Stadt)", vec!["Eisenstadt-Umgebung"]);
+    Game::create_district(&mut map, "Eisenstadt (Stadt)", vec!["Eisenstadt-Umgebung"]);
     Game::create_district(
         &mut map,
-        "Hartberg-Fürstenfeld",
+        "Hartberg-Fuerstenfeld",
         vec![
             "Oberwart",
-            "Güssing",
-            "Südoststeiermark",
+            "Guessing",
+            "Suedoststeiermark",
             "Weiz",
             "Neunkirchen",
-            "Wiener Neustadt(Land)",
+            "Wiener Neustadt (Land)",
         ],
     );
     Game::create_district(
         &mut map,
         "Graz-Umgebung",
         vec![
-            "Bruck-Mürzzuschlag",
+            "Bruck-Muerzzuschlag",
             "Weiz",
-            "Graz(Stadt)",
+            "Graz (Stadt)",
             "Voitsberg",
             "Deutschlandsberg",
             "Leibnitz",
-            "Südoststeiermark",
+            "Suedoststeiermark",
             "Leoben",
         ],
     );
     Game::create_district(
         &mut map,
-        "Villach Land",
+        "Villach-Land",
         vec![
             "Spittal an der Drau",
             "Villach Stadt",
@@ -668,26 +668,26 @@ pub(crate) fn setup_districts() -> Vec<District> {
         &mut map,
         "Oberwart",
         vec![
-            "Güssing",
-            "Hartberg-Fürstenfeld",
-            "Wiener Neustadt(Land)",
+            "Guessing",
+            "Hartberg-Fuerstenfeld",
+            "Wiener Neustadt (Land)",
             "Oberpullendorf",
         ],
     );
     Game::create_district(
         &mut map,
         "Bregenz",
-        vec!["Dornbirn", "Bludenz", "Reutte", "Feldkirch"],
+        vec!["Dornbirn", "Bludenz", "Reutte (Ausserfern)", "Feldkirch"],
     );
     Game::create_district(
         &mut map,
         "Lilienfeld",
         vec![
-            "Sankt Pölten(Land)",
+            "Sankt Poelten (Land)",
             "Baden",
-            "Wiener Neustadt(Land)",
+            "Wiener Neustadt (Land)",
             "Neunkirchen",
-            "Bruck-Mürzzuschlag",
+            "Bruck-Muerzzuschlag",
             "Scheibbs",
         ],
     );
@@ -696,12 +696,12 @@ pub(crate) fn setup_districts() -> Vec<District> {
         "Hallein",
         vec!["Salzburg-Umgebung", "Gmunden", "Sankt Johann im Pongau"],
     );
-    Game::create_district(&mut map, "Kitzbühel", vec!["Kufstein", "Zell am See"]);
+    Game::create_district(&mut map, "Kitzbuehel", vec!["Kufstein", "Zell am See"]);
     Game::create_district(
         &mut map,
         "Gmunden",
         vec![
-            "Vöcklabruck",
+            "Voecklabruck",
             "Kirchdorf an der Krems",
             "Liezen",
             "Sankt Johann im Pongau",
@@ -712,12 +712,12 @@ pub(crate) fn setup_districts() -> Vec<District> {
     );
     Game::create_district(
         &mut map,
-        "Waidhofen an der Ybbs(Stadt)",
+        "Waidhofen an der Ybbs (Stadt)",
         vec!["Amstetten", "Scheibbs", "Steyr-Land"],
     );
     Game::create_district(
         &mut map,
-        "Vöcklabruck",
+        "Voecklabruck",
         vec![
             "Ried im Innkreis",
             "Braunau am Inn",
@@ -727,10 +727,10 @@ pub(crate) fn setup_districts() -> Vec<District> {
             "Grieskirchen",
         ],
     );
-    Game::create_district(&mut map, "Landeck", vec!["Imst", "Reutte", "Bludenz"]);
+    Game::create_district(&mut map, "Landeck", vec!["Imst", "Reutte (Ausserfern)", "Bludenz"]);
     Game::create_district(
         &mut map,
-        "Bruck-Mürzzuschlag",
+        "Bruck-Muerzzuschlag",
         vec![
             "Scheibbs",
             "Lilienfeld",
@@ -741,7 +741,7 @@ pub(crate) fn setup_districts() -> Vec<District> {
             "Liezen",
         ],
     );
-    Game::create_district(&mut map, "Graz(Stadt)", vec!["Graz-Umgebung"]);
+    Game::create_district(&mut map, "Graz (Stadt)", vec!["Graz-Umgebung"]);
     Game::create_district(
         &mut map,
         "Feldkirch",
@@ -755,7 +755,7 @@ pub(crate) fn setup_districts() -> Vec<District> {
             "Zell am See",
             "Lienz",
             "Hermagor",
-            "Villach Land",
+            "Villach-Land",
             "Feldkirchen",
             "Murau",
             "Tamsweg",
