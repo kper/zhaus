@@ -97,12 +97,23 @@ function onEachFeature(feature, layer) {
     }
 };
 
+var animate_register_cmd = function() {
+    $("html").css("background-color", "black");
+
+    setTimeout(function() {
+        $("html").css("background-color", "white");
+    }, 200);
+}
+
 $("body").on('click', '.btn_qua', function (e) {
     e.preventDefault();
+    console.log("test");
 
     var name = $(this).attr("ref");
 
     reactor.action_quarantine(name);
+
+    animate_register_cmd();
 });
 
 
