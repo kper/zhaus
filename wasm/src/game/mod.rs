@@ -1,4 +1,5 @@
 use crate::console_log;
+use ::rand::prelude::*;
 use serde::{Deserialize, Serialize};
 use wasm_bindgen::prelude::*;
 
@@ -97,7 +98,7 @@ impl Reactor {
                 panic_level: 0,
                 is_game_over: false,
             },
-            map: geojson
+            map: geojson,
         }
     }
 
@@ -121,7 +122,6 @@ impl Reactor {
 #[wasm_bindgen]
 impl Reactor {
     pub fn tick(&mut self) {
-        use ::rand::prelude::*;
         crate::utils::set_panic_hook();
 
         {
@@ -167,7 +167,7 @@ impl Reactor {
             //Spread to other areas
             for di in copy.iter() {
                 //Iterating over copy while modifying the array
-                console_log!("Checking district {}", di.name);
+                //console_log!("Checking district {}", di.name);
 
                 let mut rng = thread_rng();
                 let b: f64 = rng.gen();
@@ -179,9 +179,8 @@ impl Reactor {
                     indices.shuffle(&mut rng);
 
                     for n in indices.into_iter().take(numbers) {
-                        console_log!("Spreading to {:?}", di.neighbours[n]);
+                        //console_log!("Spreading to {:?}", di.neighbours[n]);
 
-                        //TODO hashmap
                         let mut name_of_neighbour = d
                             .iter_mut()
                             .filter(|w| *w.get_name() == di.neighbours[n])
@@ -237,10 +236,74 @@ impl Reactor {
         infected_districts
     }
 
+    //Ausgangsbeschränkung
+    // Remove infected by 20%
+    pub fn action_limit(&mut self, _name: String) {
+        crate::utils::set_panic_hook();
+
+        let mut d: Vec<&mut District> = self
+            .game
+            .districts
+            .iter_mut()
+            .filter(|w| w.name == _name)
+            .collect();
+
+        let mut district = d.get_mut(0).expect("district should exist");
+
+        //Increase
+        let mut rng = rand::thread_rng();
+
+        //Lambda
+        let k: f64 = rng.gen();
+
+        //Infected
+        district.infected = (district.infected * 0.8).round();
+    }
+
+    //Ausgangssperre
+    // Remove infected by 40%
+    pub fn action_lockdown(&mut self, _name: String) {
+        crate::utils::set_panic_hook();
+
+        let mut d: Vec<&mut District> = self
+            .game
+            .districts
+            .iter_mut()
+            .filter(|w| w.name == _name)
+            .collect();
+
+        let mut district = d.get_mut(0).expect("district should exist");
+
+        //Increase
+        let mut rng = rand::thread_rng();
+
+        //Lambda
+        let k: f64 = rng.gen();
+
+        //Infected
+        district.infected = (district.infected * 0.6).round();
+    }
+
     pub fn action_quarantine(&mut self, _name: String) {
         crate::utils::set_panic_hook();
 
-        console_log!("ahahhahaha");
+        let mut d: Vec<&mut District> = self
+            .game
+            .districts
+            .iter_mut()
+            .filter(|w| w.name == _name)
+            .collect();
+
+        let mut district = d.get_mut(0).expect("district should exist");
+
+        //Increase
+        let mut rng = rand::thread_rng();
+
+        //Lambda
+        let k: f64 = rng.gen();
+
+        //Infected
+        district.infected = (district.infected * 0.4).round();
     }
 
     fn get_feature_by_name(&self, name: &String, infected: f64, dead: f64) -> geojson::Feature {
