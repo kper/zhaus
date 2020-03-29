@@ -249,7 +249,6 @@ impl Reactor {
 
         //let name: String = serde_wasm_bindgen::from_value(name).unwrap();
 
-        
         match self.map {
             GeoJson::FeatureCollection(ref ctn) => {
                 for feature in &ctn.features {
