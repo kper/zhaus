@@ -105,6 +105,39 @@ var animate_register_cmd = function() {
     }, 200);
 }
 
+$("body").on('click', '.btn_ischgl', function (e) {
+    e.preventDefault();
+    console.log("test");
+
+    var name = $(this).attr("ref");
+
+    //reactor.action_lockdown(name);
+
+    animate_register_cmd();
+});
+
+$("body").on('click', '.btn_limit', function (e) {
+    e.preventDefault();
+    console.log("test");
+
+    var name = $(this).attr("ref");
+
+    reactor.action_limit(name);
+
+    animate_register_cmd();
+});
+
+$("body").on('click', '.btn_lockdown', function (e) {
+    e.preventDefault();
+    console.log("test");
+
+    var name = $(this).attr("ref");
+
+    reactor.action_lockdown(name);
+
+    animate_register_cmd();
+});
+
 $("body").on('click', '.btn_qua', function (e) {
     e.preventDefault();
     console.log("test");
