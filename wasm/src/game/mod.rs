@@ -1,6 +1,6 @@
+use crate::console_log;
 use serde::{Deserialize, Serialize};
 use wasm_bindgen::prelude::*;
-use crate::console_log;
 
 mod setup_districts;
 
@@ -71,6 +71,7 @@ impl District {
 #[derive(Debug)]
 pub struct Reactor {
     game: Game,
+    map: geojson::GeoJson,
 }
 
 #[derive(Serialize, Deserialize)]
@@ -78,14 +79,17 @@ pub struct MemoryDistrictDatasource;
 
 impl MemoryDistrictDatasource {
     pub fn get_districts(&self) -> Vec<District> {
-        setup_districts::setup_districts()
-            .into_iter()
-            .collect()
+        setup_districts::setup_districts().into_iter().collect()
     }
 }
 
 impl Reactor {
     pub fn new(districts: Vec<District>) -> Self {
+        use geojson::GeoJson;
+
+        let geojson_str = include_str!("./../../bezirke.json");
+        let mut geojson = geojson_str.parse::<GeoJson>().unwrap();
+
         Reactor {
             game: Game {
                 districts: districts,
@@ -93,6 +97,7 @@ impl Reactor {
                 panic_level: 0,
                 is_game_over: false,
             },
+            map: geojson
         }
     }
 
@@ -155,16 +160,13 @@ impl Reactor {
                 .cloned()
                 .collect::<Vec<_>>();
 
-            let mut d: Vec<&mut District> = self
-                .game
-                .districts
-                .iter_mut()
-                .collect();
+            let mut d: Vec<&mut District> = self.game.districts.iter_mut().collect();
 
             //console_log!("{:?}", d);
 
             //Spread to other areas
-            for di in copy.iter() { //Iterating over copy while modifying the array
+            for di in copy.iter() {
+                //Iterating over copy while modifying the array
                 console_log!("Checking district {}", di.name);
 
                 let mut rng = thread_rng();
@@ -177,20 +179,22 @@ impl Reactor {
                     indices.shuffle(&mut rng);
 
                     for n in indices.into_iter().take(numbers) {
-                        console_log!("Spreading to {:?}", di.neighbours[n]); 
+                        console_log!("Spreading to {:?}", di.neighbours[n]);
 
+                        //TODO hashmap
                         let mut name_of_neighbour = d
                             .iter_mut()
                             .filter(|w| *w.get_name() == di.neighbours[n])
                             .collect::<Vec<_>>();
 
-                        //console_log!("Spreading to {:?}", name_of_neighbour); 
+                        //console_log!("Spreading to {:?}", name_of_neighbour);
 
                         let mut w = name_of_neighbour
                             .get_mut(0)
                             .expect("Neighbour should exist"); //Reference by name
 
-                        if w.infected > 0.0 { //already infected
+                        if w.infected > 0.0 {
+                            //already infected
                             continue;
                         }
 
@@ -211,7 +215,6 @@ impl Reactor {
         self.game.tick += 1;
     }
 
-    //#[wasm_bindgen]
     pub fn get_overlay_infected(&self) -> Vec<JsValue> {
         crate::utils::set_panic_hook();
 
@@ -219,55 +222,60 @@ impl Reactor {
             .get_game()
             .get_districts()
             .iter()
-            .filter(|w| w.infected > 0.0 || w.dead > 0.0)
+            //.filter(|w| w.infected > 0.0 || w.dead > 0.0)
             .map(|w| {
-                let js = serde_wasm_bindgen::to_value(w.get_name()).unwrap();
-                let feature = get_feature_by_name(js, w.infected, w.dead);
+                //let js = serde_wasm_bindgen::to_value(w.get_name()).unwrap();
+                let feature = self.get_feature_by_name(&w.name, w.infected, w.dead);
 
                 feature
+            })
+            .map(|w| {
+                return serde_wasm_bindgen::to_value(&w).unwrap();
             })
             .collect();
 
         infected_districts
     }
 
-    pub fn to_string(&self) -> String {
-        format!("{:#?}", self)
+    pub fn action_quarantine(&mut self, _name: String) {
+        crate::utils::set_panic_hook();
+
+        console_log!("ahahhahaha");
     }
-}
 
-#[wasm_bindgen]
-pub fn get_feature_by_name(name: JsValue, infected: f64, dead: f64) -> JsValue {
-    use geojson::GeoJson;
-    use serde_json::to_value;
+    fn get_feature_by_name(&self, name: &String, infected: f64, dead: f64) -> geojson::Feature {
+        use geojson::GeoJson;
+        use serde_json::to_value;
 
-    let name: String = serde_wasm_bindgen::from_value(name).unwrap();
+        //let name: String = serde_wasm_bindgen::from_value(name).unwrap();
 
-    let geojson_str = include_str!("./../../bezirke.json");
-    let mut geojson = geojson_str.parse::<GeoJson>().unwrap();
+        
+        match self.map {
+            GeoJson::FeatureCollection(ref ctn) => {
+                for feature in &ctn.features {
+                    let mut feature = feature.clone();
+                    if let Some(ref mut props) = feature.properties {
+                        let fname = match props.get("name").unwrap() {
+                            serde_json::value::Value::String(ref s) => s,
+                            _ => panic!("not ok"),
+                        };
 
-    match geojson {
-        GeoJson::FeatureCollection(ref mut ctn) => {
-            for feature in &mut ctn.features {
-                if let Some(ref mut props) = feature.properties {
-                    let fname = match props.get("name").unwrap() {
-                        serde_json::value::Value::String(ref s) => s,
-                        _ => panic!("not ok"),
-                    };
-
-                    if *fname == name {
-                        props.insert(String::from("infected"), to_value(infected).unwrap());
-                        props.insert(String::from("dead"), to_value(dead).unwrap());
-                        return serde_wasm_bindgen::to_value(&feature.clone()).unwrap();
+                        if fname == name {
+                            props.insert(String::from("infected"), to_value(infected).unwrap());
+                            props.insert(String::from("dead"), to_value(dead).unwrap());
+                            return feature.clone();
+                            //return serde_wasm_bindgen::to_value(&feature.clone()).unwrap();
+                        }
                     }
                 }
             }
-        }
-        GeoJson::Feature(ref feature) => {
-            panic!("no ok");
-        }
-        GeoJson::Geometry(ref geometry) => panic!("not ok"),
-    };
+            _ => panic!("not ok"),
+        };
 
-    panic!("feature not found {}", name);
+        panic!("feature not found {}", name);
+    }
+
+    pub fn to_string(&self) -> String {
+        format!("{:#?}", self)
+    }
 }
