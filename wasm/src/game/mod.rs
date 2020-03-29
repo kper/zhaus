@@ -33,6 +33,7 @@ pub struct District {
     neighbours: Vec<String>,
     lambda: f64, //Wachstumsrate
     tick: usize,
+    action_clicked: bool,
 }
 
 impl District {
@@ -44,6 +45,7 @@ impl District {
             neighbours: Vec::new(),
             lambda: 0.0,
             tick: 0,
+            action_clicked: false,
         }
     }
 
@@ -55,6 +57,7 @@ impl District {
             neighbours: neighbours.into_iter().map(|w| w.into()).collect(),
             lambda: 0.0,
             tick: 0,
+            action_clicked: false,
         }
     }
 
@@ -92,7 +95,7 @@ impl Reactor {
         use geojson::GeoJson;
 
         let geojson_str = include_str!("./../../bezirke.json");
-        let mut geojson = geojson_str.parse::<GeoJson>().unwrap();
+        let geojson = geojson_str.parse::<GeoJson>().unwrap();
 
         Reactor {
             game: Game {
@@ -126,6 +129,21 @@ impl Reactor {
 impl Reactor {
     pub fn tick(&mut self) {
         crate::utils::set_panic_hook();
+
+        //Reset action_clicked
+        {
+            let mut d: Vec<&mut District> = self
+                .game
+                .districts
+                .iter_mut()
+                .filter(|w| w.action_clicked)
+                .collect();
+
+            for i in d.iter_mut() {
+                i.action_clicked = false;
+            }
+
+        }
 
         {
             let mut d: Vec<&mut District> = self
@@ -256,6 +274,10 @@ impl Reactor {
 
         let mut district = d.get_mut(0).expect("district should exist");
 
+        if district.action_clicked {
+            return;
+        }
+
         //Increase
         let mut rng = rand::thread_rng();
 
@@ -264,6 +286,8 @@ impl Reactor {
 
         //Infected
         district.infected = (district.infected * 0.8).round();
+
+        district.action_clicked = true;
     }
 
     //Ausgangssperre
@@ -280,6 +304,10 @@ impl Reactor {
 
         let mut district = d.get_mut(0).expect("district should exist");
 
+        if district.action_clicked {
+            return;
+        }
+
         //Increase
         let mut rng = rand::thread_rng();
 
@@ -288,6 +316,8 @@ impl Reactor {
 
         //Infected
         district.infected = (district.infected * 0.6).round();
+
+        district.action_clicked = true;
     }
 
     pub fn action_quarantine(&mut self, _name: String) {
@@ -302,6 +332,10 @@ impl Reactor {
 
         let mut district = d.get_mut(0).expect("district should exist");
 
+        if district.action_clicked {
+            return;
+        }
+
         //Increase
         let mut rng = rand::thread_rng();
 
@@ -310,6 +344,8 @@ impl Reactor {
 
         //Infected
         district.infected = (district.infected * 0.4).round();
+
+        district.action_clicked = true;
     }
 
     fn get_feature_by_name(&self, name: &String, infected: f64, dead: f64) -> geojson::Feature {
