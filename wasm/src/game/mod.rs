@@ -9,7 +9,7 @@ mod setup_districts;
 #[derive(Debug, Clone)]
 pub struct Game {
     districts: Vec<District>,
-    tick: usize,
+    day: usize,
     panic_level: u8,
     pub is_game_over: bool,
 }
@@ -32,6 +32,7 @@ pub struct District {
     pub dead: f64,
     neighbours: Vec<String>,
     lambda: f64, //Wachstumsrate
+    tick: usize,
 }
 
 impl District {
@@ -42,6 +43,7 @@ impl District {
             dead: 0.0,
             neighbours: Vec::new(),
             lambda: 0.0,
+            tick: 0,
         }
     }
 
@@ -52,6 +54,7 @@ impl District {
             dead: 0.0,
             neighbours: neighbours.into_iter().map(|w| w.into()).collect(),
             lambda: 0.0,
+            tick: 0,
         }
     }
 
@@ -94,7 +97,7 @@ impl Reactor {
         Reactor {
             game: Game {
                 districts: districts,
-                tick: 0,
+                day: 0,
                 panic_level: 0,
                 is_game_over: false,
             },
@@ -143,11 +146,13 @@ impl Reactor {
 
                 //Infected
                 di.infected =
-                    (di.infected * std::f64::consts::E.powf(self.game.tick as f64)).round();
+                    (di.infected * std::f64::consts::E.powf(di.tick as f64)).round();
 
                 //Dead
                 let l: f64 = rng.gen();
                 di.dead = (di.infected * l / 1000.0).round(); //Sterblichkeit
+
+                di.tick += 1;
             }
         }
 
@@ -205,13 +210,14 @@ impl Reactor {
 
                         //Infected
                         w.infected =
-                            (w.infected * std::f64::consts::E.powf(self.game.tick as f64)).round();
+                            (w.infected * std::f64::consts::E.powf(di.tick as f64)).round();
+
                     }
                 }
             }
         }
 
-        self.game.tick += 1;
+        self.game.day += 1;
     }
 
     pub fn get_overlay_infected(&self) -> Vec<JsValue> {
