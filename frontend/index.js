@@ -2,6 +2,15 @@ import * as wasm from 'zhaus';
 import L from 'leaflet';
 import $ from 'jquery';
 
+/*fetch('zhaus').then(response =>
+    response.arrayBuffer()
+).then(bytes =>
+    WebAssembly.instantiate(bytes)
+).then(obj => {
+    var wasm = obj.instance.exports;
+    */
+//console.log(obj.instance.exports.my_func());
+
 var reactor = wasm.get_reactor();
 
 var map = L.map("map-container", {
@@ -97,10 +106,10 @@ function onEachFeature(feature, layer) {
     }
 };
 
-var animate_register_cmd = function() {
+var animate_register_cmd = function () {
     $("html").css("background-color", "black");
 
-    setTimeout(function() {
+    setTimeout(function () {
         $("html").css("background-color", "white");
     }, 200);
 }
@@ -188,3 +197,4 @@ document.getElementById("turn").onclick = function () {
 
     handle_infections(infected_districts);
 }
+//});
